@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Rafael Trajano | Desenvolvedor Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Rafael Trajano">
+    <meta name="theme-color" content="#6D2A89">
+    <meta name="description" content="Portfólio de Rafael Trajano, Desenvolvedor Web especializado em HTML, CSS, JavaScript e React. Conheça meus projetos e habilidades.">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rafael Trajano | Desenvolvedor Web">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Conheça o portfólio de Rafael Trajano, Desenvolvedor Web especializado em HTML, CSS, JavaScript e React.">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://rafaeltrajano.netlify.app/">
+    <meta property="og:site_name" content="Rafael Trajano">
+
+    <!-- URL Canônica -->
+    <link rel="canonical" href="https://rafaeltrajano.netlify.app/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="imagens/hamburguer.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rafael Trajano",
+      "url": "https://rafaeltrajano.netlify.app/",
+      "jobTitle": "Desenvolvedor Web",
+      "sameAs": [
+        "https://github.com/rafael-trajano",
+        "https://www.linkedin.com/in/rafael-trajano"
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+<!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo-link">
+            <span class="logo-texto">Rafael Trajano</span>
+        </a>
+        <div class="menu">
+                <button class="menu-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false"
+                    aria-controls="nav-principal">  
+                <span class="menu-texto">Menu</span>
+                <img src="imagens/hamburguer.png" alt="" class="menu-hamburguer-img" aria-hidden="true">
+            </button>
+        </div>
+    </header>
+
+<!-- Nav -->
+    <nav class="nav" id="nav-principal" aria-label="Menu principal">
+        <div class="nav-header">
+            <span class="nav-logo-texto">Rafael Trajano</span>
+            <button class="menu-fechar" aria-label="Fechar menu">✕</button>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#tecnologias">Tecnologias</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="nav-social">
+            <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="icone icone-whatsapp" aria-hidden="true"></i></a>
+            <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="icone icone-github" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/rafael-trajano" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="icone icone-linkedin" aria-hidden="true"></i></a>
+            <a href="mailto:rafatrajaninhortn@gmail.com" aria-label="Email"><i class="icone icone-envelope" aria-hidden="true"></i></a>
+        </div>
+    </nav>
+
+<div class="menu-overlay" aria-hidden="true"></div>
+
+<main>
+
+<!-- Home -->
+    <section id="home" class="home">
+        <div class="home-texto">
+            <h1 class="animar">Rafael <span>Trajano</span></h1>
+            <p class="home-subtitulo">Sou <strong>Desenvolvedor Web</strong></p>
+            <p class="home-desc">Gosto de construir interfaces simples, funcionais e intuitivas.</p>
+            <div class="home-cta">
+                <a href="arquivos/curriculo_rafael_trajano.pdf" download class="cta">Baixar Currículo</a>
+            </div>
+        </div>
+        <div class="home-imagem-wrap">
+            <div class="home-imagem-glow" aria-hidden="true"></div>
+            <div class="home-imagem">
+                <img src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, desenvolvedor front-end">
+            </div>
+        </div>
+    </section>
+
+<!-- Sobre -->
+<section id="sobre" class="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-imagem-wrap animar">
+      <div class="sobre-imagem-glow" aria-hidden="true"></div>
+      <div class="sobre-imagem">
+        <img src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, desenvolvedor front-end">
+      </div>
+    </div>
+    <div class="sobre-conteudo animar">
+      <span class="sobre-label">Sobre</span>
+      <h2>Minha Jornada</h2>
+      <div class="texto-sobre">
+        <p>
+          Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela Universidade Estadual da Paraíba
+          e possuo formação complementar pela <strong>Meta</strong>, com cursos voltados ao <strong>Desenvolvimento Web</strong>.
+        </p>
+        <p>
+          Além das habilidades técnicas, sou comunicativo, empático e paciente, qualidades que me ajudam a sempre procurar entender a perspectiva das pessoas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tecnologias -->
+    <section id="tecnologias" class="tecnologias">
+        <div class="tecnologias-header animar">
+            <span class="tecnologias-label">Tecnologias</span>
+            <h2>Minha Stack</h2>
+        </div>
+        <div class="tecnologias-lista">
+            <div class="tecnologias-card animar">
+                <i class="icone icone-html5" aria-hidden="true"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="tecnologias-card animar">
+                <i class="icone icone-css3" aria-hidden="true"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="tecnologias-card animar">
+                <i class="icone icone-javascript" aria-hidden="true"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="tecnologias-card animar">
+                <i class="icone icone-react" aria-hidden="true"></i>
+                <p>React</p>
+            </div>
+        </div>
+    </section>
+
+<!-- Projetos -->
+<section id="projetos" class="projetos">
+  <div class="projetos-header animar">
+    <span class="projetos-label">Projetos</span>
+    <h2>Meu Portfólio</h2>
+  </div>
+
+  <div class="projetos-carrossel-wrapper">
+    <button class="projetos-seta seta-esquerda" id="projetos-prev" aria-label="Projeto anterior"></button>
+
+    <div class="projetos-carrossel">
+      <div class="projetos-lista" id="projetos-lista">
+
+        <!-- Projeto 1 — VoltControl -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-voltcontrol.webp" alt="VoltControl — Dashboard de Monitoramento de Energia">
+            <span class="projetos-tec-badge">React · Chart.js · LocalStorage</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>VoltControl — Dashboard de Energia</h3>
+            <p>Dashboard para controle de energia elétrica, com gráfico comparativo, histórico e exportação em PDF.</p>
+            <div class="projetos-btns">
+              <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
+              <a href="https://github.com/rafael-trajano/voltcontrol" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto VoltControl"></a>
+        </article>
+
+        <!-- Projeto 2 — Forrobodó Junino -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-forrobodojunino.webp" alt="Site para Evento — Forrobodó Junino">
+            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>Site para Evento — Forrobodó Junino</h3>
+            <p>Site para divulgar evento, com programação, galeria de fotos e integração com Google Maps.</p>
+            <div class="projetos-btns">
+              <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
+              <a href="https://github.com/rafael-trajano/forrobodo-junino" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Forrobodó Junino"></a>
+        </article>
+
+        <!-- Projeto 3 — Cachaça Forrobodó -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-forrobodo.webp" alt="Site Institucional — Cachaça Forrobodó">
+            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>Site Institucional — Cachaça Forrobodó</h3>
+            <p>Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
+            <div class="projetos-btns">
+              <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
+              <a href="https://github.com/rafael-trajano/forrobodo" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Forrobodó"></a>
+        </article>
+
+        <!-- Projeto 4 — Cachaça Afetuosa -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-afetuosa.webp" alt="Site Institucional — Cachaça Afetuosa">
+            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>Site Institucional — Cachaça Afetuosa</h3>
+            <p>Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
+            <div class="projetos-btns">
+              <a href="https://afetuosa.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
+              <a href="https://github.com/rafael-trajano/afetuosa" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://afetuosa.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Afetuosa"></a>
+        </article>
+
+        <!-- Projeto 5 — Portfólio -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-portfolio.webp" alt="Portfólio — Rafael Trajano">
+            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>Portfólio — Rafael Trajano</h3>
+            <p>Portfólio com meu perfil profissional, principais projetos, tecnologias utilizadas e canais de contato.</p>
+            <div class="projetos-btns">
+              <a href="https://rafaeltrajano.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
+              <a href="https://github.com/rafael-trajano/portfolio" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://rafaeltrajano.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Portfólio"></a>
+        </article>
+
+      </div>
+    </div>
+
+    <button class="projetos-seta seta-direita" id="projetos-next" aria-label="Próximo projeto"></button>
+  </div>
+</section>
+
+<!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="contato-header animar">
+            <span class="contato-label">Contato</span>
+            <h2>Vamos Conversar?</h2>
+        </div>
+        <div class="contato-lista">
+            <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" class="contato-card animar" aria-label="WhatsApp">
+                <i class="icone icone-whatsapp" aria-hidden="true"></i>
+                <p>WhatsApp</p>
+            </a>
+            <a href="mailto:rafatrajaninhortn@gmail.com" class="contato-card animar" aria-label="Email">
+                <i class="icone icone-envelope" aria-hidden="true"></i>
+                <p>Email</p>
+            </a>
+            <a href="https://www.linkedin.com/in/rafael-trajano" target="_blank" rel="noopener noreferrer" class="contato-card animar" aria-label="LinkedIn">
+                <i class="icone icone-linkedin" aria-hidden="true"></i>
+                <p>LinkedIn</p>
+            </a>
+            <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" class="contato-card animar" aria-label="GitHub">
+                <i class="icone icone-github" aria-hidden="true"></i>
+                <p>GitHub</p>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <a href="#home" class="footer-logo">
+        <span class="footer-logo-texto">Rafael Trajano</span>
+    </a>
+    <div class="footer-info">
+        <p class="footer-copyright">© 2026 Rafael Trajano — Todos os direitos reservados</p>
+        <p class="footer-linha">E-mail: <a href="mailto:rafatrajaninhortn@gmail.com">rafatrajaninhortn@gmail.com</a></p>
+        <p class="footer-linha">Tel: <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer">(83) 98670-3374</a></p>
+    </div>
+    <div class="footer-social">
+        <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="icone icone-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="icone icone-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/rafael-trajano" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="icone icone-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="mailto:rafatrajaninhortn@gmail.com" aria-label="Email"><i class="icone icone-envelope" aria-hidden="true"></i>
+        </a>
+    </div>
+</footer>
+
+</body>
+</html>
