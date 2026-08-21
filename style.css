@@ -1101,21 +1101,25 @@ main {
         padding: 24px 20px;
     }
 
+    .contato {
+        padding: 24px 20px 60px 20px;
+    }
+
     .tecnologias-lista {
         grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
+        gap: 10px;
     }
 
     .tecnologias-card {
-        max-width: 90px;
+        max-width: 70px;
     }
 
     .tecnologias-card .icone {
-        font-size: 36px;
+        font-size: 26px;
     }
 
     .tecnologias-card p {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 
     /* Projetos */
@@ -1188,6 +1192,8 @@ main {
 }
 
     .footer-social {
-        margin-top: 8px;        
+        margin-top: 8px;
+        text-align: center;      
+        justify-self: center;
 }
 }
