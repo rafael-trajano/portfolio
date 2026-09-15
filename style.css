@@ -160,6 +160,9 @@ img {
 .icone-postgresql        { -webkit-mask-image: url("tecnologias/postgresql.svg");        mask-image: url("tecnologias/postgresql.svg"); }
 .icone-python            { -webkit-mask-image: url("tecnologias/python.svg");            mask-image: url("tecnologias/python.svg"); }
 .icone-reactnative       { -webkit-mask-image: url("tecnologias/reactnative.svg");       mask-image: url("tecnologias/reactnative.svg"); }
+.icone-fastapi           { -webkit-mask-image: url("tecnologias/fastapi.svg");           mask-image: url("tecnologias/fastapi.svg"); }
+.icone-cypressio         { -webkit-mask-image: url("tecnologias/cypressio.svg");         mask-image: url("tecnologias/cypressio.svg"); }
+.icone-cucumber          { -webkit-mask-image: url("tecnologias/cucumber.svg");          mask-image: url("tecnologias/cucumber.svg"); }
 
 /* 5. LAYOUT */
 
@@ -564,7 +567,6 @@ main {
     border-radius: 48px;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
-    animation: home-float 4s ease-in-out infinite;
 }
 
 .home-imagem img {
@@ -572,17 +574,6 @@ main {
     height: auto;
     object-fit: contain;
     display: block;
-}
-
-@keyframes home-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .home-imagem {
-        animation: none;
-    }
 }
 
 .home-cta {
@@ -670,7 +661,7 @@ main {
 /* Tecnologias */
 
 .tecnologias {
-    max-width: 900px;
+    max-width: 1100px;
 }
 
 .tecnologias-header {
@@ -684,16 +675,47 @@ main {
     font-size: clamp(1.5rem, 1rem + 2.5vw, 2rem);
 }
 
+/* Carrossel infinito */
+
+.tecnologias-carrossel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
+}
+
+.tecnologias-track {
+    display: flex;
+    width: max-content;
+    animation: tecnologias-marquee 26s linear infinite;
+}
+
+.tecnologias-carrossel:hover .tecnologias-track {
+    animation-play-state: paused;
+}
+
 .tecnologias-lista {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    align-items: center;
     gap: 20px;
-    justify-items: center;
+    padding: 4px 10px;
+}
+
+@keyframes tecnologias-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tecnologias-track {
+        animation: none;
+    }
 }
 
 .tecnologias-card {
-    width: 100%;
-    max-width: 130px;
+    flex: 0 0 auto;
+    width: 130px;
     aspect-ratio: 1 / 1;
     background-color: var(--cor-branca);
     border-radius: var(--radius-lg);
@@ -706,10 +728,10 @@ main {
     transition: var(--transition);
 }
 
-.tecnologias-card.animar:hover {
+.tecnologias-card:hover {
     box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
 }
-
 
 .tecnologias-card .icone {
     font-size: 40px;
@@ -997,15 +1019,8 @@ main {
     transform: translateY(0);
 }
 
-/* Delays escalonados — tecnologias */
-.tecnologias-lista .tecnologias-card:nth-child(1) { transition-delay: 0s; }
-.tecnologias-lista .tecnologias-card:nth-child(2) { transition-delay: 0.2s; }
-.tecnologias-lista .tecnologias-card:nth-child(3) { transition-delay: 0.4s; }
-.tecnologias-lista .tecnologias-card:nth-child(4) { transition-delay: 0.6s; }
-
 /* 9. RESPONSIVIDADE */
 
-/* ===== TABLET (1024px) ===== */
 @media (max-width: 1024px) {
     .home {
         gap: 50px;
@@ -1020,7 +1035,6 @@ main {
     }
 }
 
-/* ===== MOBILE (768px) ===== */
 @media (max-width: 768px) {
     section {
         padding: 40px 20px;
@@ -1043,7 +1057,7 @@ main {
     }
 
     .menu-hamburguer-img {
-        width: 75px;
+        width: 62px;
     }
 
     /* Home */
@@ -1105,21 +1119,28 @@ main {
         padding: 24px 20px 60px 20px;
     }
 
+    .tecnologias-carrossel {
+        -webkit-mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+        mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+    }
+
     .tecnologias-lista {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        gap: 14px;
+        padding: 4px 6px;
     }
 
     .tecnologias-card {
-        max-width: 70px;
+        width: 96px;
+        gap: 8px;
+        border-radius: var(--radius-lg);
     }
 
     .tecnologias-card .icone {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .tecnologias-card p {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
     }
 
     /* Projetos */
