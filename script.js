@@ -111,8 +111,40 @@ function initProjetosCarrossel() {
     setaPrev.addEventListener('click', irParaAnterior);
 }
 
+// Função Tema (claro/escuro)
+
+function initTema() {
+    const botao = document.querySelector('.tema-toggle');
+    const raiz = document.documentElement;
+
+    if (!botao) return;
+
+    function aplicarTema(tema) {
+        raiz.setAttribute('data-tema', tema);
+        botao.setAttribute('aria-checked', tema === 'escuro' ? 'true' : 'false');
+    }
+
+    // O tema inicial já foi aplicado no <head>; aqui só sincroniza o rótulo do botão
+    aplicarTema(raiz.getAttribute('data-tema') || 'claro');
+
+    botao.addEventListener('click', () => {
+        const novoTema = raiz.getAttribute('data-tema') === 'escuro' ? 'claro' : 'escuro';
+        aplicarTema(novoTema);
+        try { localStorage.setItem('tema', novoTema); } catch (e) {}
+    });
+
+    // Se a pessoa não escolheu um tema, acompanha o tema do sistema
+    const preferencia = window.matchMedia('(prefers-color-scheme: dark)');
+    preferencia.addEventListener('change', (event) => {
+        let salvo = null;
+        try { salvo = localStorage.getItem('tema'); } catch (e) {}
+        if (!salvo) aplicarTema(event.matches ? 'escuro' : 'claro');
+    });
+}
+
 // Inicialização
 
+initTema();
 initMenu();
 initAnimacoes();
 initProjetosCarrossel();

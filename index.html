@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Rafael Trajano">
-    <meta name="theme-color" content="#6D2A89">
+    <meta name="theme-color" content="#6C2E9E">
     <meta name="description" content="Portfólio de Rafael Trajano, Full-Stack Developer especializado em JavaScript, React, Python, FastAPI e testes automatizados (Cucumber, Cypress).">
 
     <meta name="robots" content="index, follow">
@@ -18,6 +18,11 @@
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="https://rafaeltrajano.netlify.app/">
     <meta property="og:site_name" content="Rafael Trajano">
+    <meta property="og:image" content="https://rafaeltrajano.netlify.app/imagens/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Rafael Trajano, Full-Stack Developer">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- URL Canônica -->
     <link rel="canonical" href="https://rafaeltrajano.netlify.app/">
@@ -28,7 +33,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="imagens/hamburguer.png">
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-sol.svg">
+    <link rel="icon" type="image/png" href="imagens/favicon-sol.png">
+    <link rel="apple-touch-icon" href="imagens/favicon-sol.png">
+
+    <!-- Tema: aplica antes de carregar o CSS para evitar "piscar" -->
+    <script>
+      (function () {
+        var tema = null;
+        try { tema = localStorage.getItem('tema'); } catch (e) {}
+        if (tema !== 'claro' && tema !== 'escuro') {
+          tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+        }
+        document.documentElement.setAttribute('data-tema', tema);
+      })();
+    </script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
@@ -54,12 +73,40 @@
 
 <body>
 
+<!-- Formas reutilizadas nas artes do céu -->
+<svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="ceu-sp" d="M0,-10 C1.2,-2 2,-1.2 10,0 C2,1.2 1.2,2 0,10 C-1.2,2 -2,1.2 -10,0 C-2,-1.2 -1.2,-2 0,-10Z"/>
+        <radialGradient id="ceu-gradiente" cx="50%" cy="45%" r="60%">
+            <stop offset="0" class="ceu-stop-1"/>
+            <stop offset="1" class="ceu-stop-2"/>
+        </radialGradient>
+        <mask id="lua-mascara" maskUnits="userSpaceOnUse" x="-80" y="-80" width="160" height="160"><circle r="62" fill="#fff"/><circle cx="30" cy="-20" r="54" fill="#000"/></mask>
+    </defs>
+</svg>
+
 <!-- Header -->
     <header class="header">
         <a href="#home" class="logo-link">
             <span class="logo-texto">Rafael Trajano</span>
         </a>
         <div class="menu">
+            <button class="tema-toggle" type="button" role="switch" aria-checked="false" aria-label="Tema escuro">
+                <span class="tema-bolinha" aria-hidden="true"></span>
+                <svg class="tema-icone tema-icone-sol" viewBox="-80 -80 160 160" aria-hidden="true">
+                    <g stroke="#f6c94c" stroke-width="11" stroke-linecap="round"><path d="M0,-74 v12 M0,62 v12 M-74,0 h12 M62,0 h12 M-52,-52 l9,9 M43,43 l9,9 M-52,52 l9,-9 M43,-43 l9,-9"/></g>
+                    <circle r="44" fill="#fbd65a"/>
+                    <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
+                    <circle cx="-29" cy="8" r="6" fill="#f5a9a0" opacity=".85"/><circle cx="29" cy="8" r="6" fill="#f5a9a0" opacity=".85"/>
+                </svg>
+                <svg class="tema-icone tema-icone-lua" viewBox="-70 -70 140 140" aria-hidden="true">
+                    <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
+                    <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <circle cx="-48" cy="18" r="7" fill="#f5a9a0" opacity=".8"/>
+                </svg>
+            </button>
                 <button class="menu-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false"
                     aria-controls="nav-principal">  
                 <span class="menu-texto">Menu</span>
@@ -95,19 +142,48 @@
 
 <!-- Home -->
     <section id="home" class="home">
+
         <div class="home-texto">
             <h1 class="animar">Rafael <span>Trajano</span></h1>
             <p class="home-subtitulo"><strong>Full-Stack Developer</strong></p>
-            <p class="home-desc">Gosto de construir Sistemas Web funcionais e intuitivos.</p>
+            <p class="home-desc">Desenvolvo sistemas web completos, da modelagem à interface.</p>
             <div class="home-cta">
                 <a href="arquivos/curriculo-rafael-trajano.pdf" download class="cta">Baixar Currículo</a>
+                <a href="#projetos" class="cta cta-secundario">Ver Projetos</a>
             </div>
         </div>
         <div class="home-imagem-wrap">
             <div class="home-imagem-glow" aria-hidden="true"></div>
-            <div class="home-imagem">
-                <img src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer">
-            </div>
+            <!-- Arte do céu (lua no tema escuro, sol no claro) -->
+            <svg class="home-ilustra" viewBox="0 0 440 360" aria-hidden="true">
+                <ellipse class="ilustra-elipse" cx="220" cy="190" rx="212" ry="150" fill="url(#ceu-gradiente)"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(250 70) scale(1.1)"/>
+                <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(330 250) scale(.8)"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(60 200) scale(.8)"/>
+                <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(40 120) scale(.7)"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(395 175) scale(.9)"/>
+                <circle class="ceu-ponto" cx="300" cy="120" r="2"/><circle class="ceu-ponto" cx="140" cy="300" r="1.8"/>
+                <circle class="ceu-ponto" cx="230" cy="250" r="1.6"/><circle class="ceu-ponto" cx="90" cy="60" r="1.6"/>
+                <path class="ceu-trilha ilustra-trilha" d="M0,345 C70,320 130,300 170,262 C205,228 178,196 152,212 C126,228 152,272 210,258 C280,240 330,170 372,96"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(380 82) scale(2.4)"/>
+                <g class="sobre-lua" transform="translate(115 105) scale(.85)">
+                    <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
+                    <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <circle cx="-48" cy="18" r="6" fill="#f5a9a0" opacity=".75"/>
+                </g>
+                <g class="sobre-sol" transform="translate(110 105) scale(.8)">
+                    <g stroke="#f6c94c" stroke-width="9" stroke-linecap="round"><path d="M0,-74 v14 M0,60 v14 M-74,0 h14 M60,0 h14 M-52,-52 l10,10 M42,42 l10,10 M-52,52 l10,-10 M42,-42 l10,-10"/></g>
+                    <circle r="46" fill="#fbd65a"/>
+                    <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
+                    <circle cx="-30" cy="8" r="6" fill="#f5a9a0" opacity=".8"/><circle cx="30" cy="8" r="6" fill="#f5a9a0" opacity=".8"/>
+                </g>
+                <g class="ceu-nuvem">
+                    <g transform="translate(250 300)"><circle r="28"/><circle cx="33" cy="-14" r="36"/><circle cx="70" cy="2" r="26"/><circle cx="98" cy="10" r="18"/><rect width="98" height="30"/></g>
+                    <g transform="translate(40 280)"><circle r="16"/><circle cx="18" cy="-7" r="20"/><circle cx="38" cy="2" r="14"/><rect width="38" height="14"/></g>
+                </g>
+            </svg>
         </div>
     </section>
 
@@ -116,8 +192,32 @@
   <div class="sobre-grid">
     <div class="sobre-imagem-wrap animar">
       <div class="sobre-imagem-glow" aria-hidden="true"></div>
-      <div class="sobre-imagem">
-        <img src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
+      <!-- Ilustração sobre o céu -->
+      <div class="sobre-imagem sobre-boneco">
+        <svg class="sobre-boneco-ceu" viewBox="0 0 340 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <circle class="ceu-ponto" cx="150" cy="22" r="1.8"/><circle class="ceu-ponto" cx="230" cy="70" r="1.6"/>
+          <circle class="ceu-ponto" cx="18" cy="140" r="1.5"/><circle class="ceu-ponto" cx="322" cy="205" r="1.8"/>
+          <circle class="ceu-ponto" cx="200" cy="318" r="1.6"/>
+          <use href="#ceu-sp" class="ceu-brilho" transform="translate(178 34) scale(.8)"/>
+          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(26 196) scale(.7)"/>
+          <use href="#ceu-sp" class="ceu-brilho" transform="translate(318 150) scale(.75)"/>
+          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(110 318) scale(.6)"/>
+          <!-- sol (claro) e lua (escuro) no canto -->
+          <g class="sobre-lua" transform="translate(52 56) scale(.42)">
+            <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
+            <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <circle cx="-48" cy="18" r="6" fill="#f5a9a0" opacity=".75"/>
+          </g>
+          <g class="sobre-sol" transform="translate(50 54) scale(.4)">
+            <g stroke="#f6c94c" stroke-width="10" stroke-linecap="round"><path d="M0,-74 v14 M0,60 v14 M-74,0 h14 M60,0 h14 M-52,-52 l10,10 M42,42 l10,10 M-52,52 l10,-10 M42,-42 l10,-10"/></g>
+            <circle r="46" fill="#fbd65a"/>
+            <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
+          </g>
+        </svg>
+        <img class="boneco-dia" src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
+        <img class="boneco-noite" src="imagens/desenho-rafael-noite.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
       </div>
     </div>
     <div class="sobre-conteudo animar">
@@ -125,8 +225,8 @@
       <h2>Minha Jornada</h2>
       <div class="texto-sobre">
         <p>
-          Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela Universidade Estadual da Paraíba, com conclusão prevista para dezembro de 2027,
-          e possuo formação complementar pela <strong>Meta</strong>, com cursos voltados ao <strong>Desenvolvimento Web</strong>.
+          Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela Universidade Estadual da Paraíba e estagiário de Engenharia de Software no <strong>NUTES</strong>.
+          Também desenvolvi o <strong>Jornada</strong>, um sistema de estudos gamificado que é o meu TCC.
         </p>
         <p>
           Além das habilidades técnicas, sou comunicativo, empático e paciente, qualidades que me ajudam a sempre procurar entender a perspectiva das outras pessoas.
@@ -221,7 +321,23 @@
     <div class="projetos-carrossel">
       <div class="projetos-lista" id="projetos-lista">
 
-        <!-- Projeto 1 — VoltControl -->
+        <!-- Projeto 1 — Jornada (TCC) -->
+        <article class="projetos-card animar">
+          <div class="projetos-img-wrap">
+            <img src="imagens/imagem-jornada.webp" alt="Jornada — Sistema de estudos gamificado" loading="lazy">
+            <span class="projetos-tec-badge">React · FastAPI · PostgreSQL</span>
+          </div>
+          <div class="projetos-conteudo">
+            <h3>Jornada — Sistema de Estudos (TCC)</h3>
+            <p>Sistema de estudos gamificado, com streak, troféus e grupos de estudo com ranking entre amigos.</p>
+            <div class="projetos-btns">
+              <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
+            </div>
+          </div>
+          <a href="https://jornadaestudos.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Jornada"></a>
+        </article>
+
+        <!-- Projeto 2 — VoltControl -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
             <img src="imagens/imagem-voltcontrol.webp" alt="VoltControl — Dashboard de Monitoramento de Energia" loading="lazy">
@@ -231,14 +347,13 @@
             <h3>VoltControl — Dashboard de Energia</h3>
             <p>Dashboard para controle de energia elétrica, com gráfico comparativo, histórico e exportação em PDF.</p>
             <div class="projetos-btns">
-              <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
-              <a href="https://github.com/rafael-trajano/voltcontrol" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/voltcontrol" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
             </div>
           </div>
           <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto VoltControl"></a>
         </article>
 
-        <!-- Projeto 2 — Forrobodó Junino -->
+        <!-- Projeto 3 — Forrobodó Junino -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
             <img src="imagens/imagem-forrobodojunino.webp" alt="Site para Evento — Forrobodó Junino" loading="lazy">
@@ -248,14 +363,13 @@
             <h3>Site para Evento — Forrobodó Junino</h3>
             <p>Site para divulgar evento, com programação, galeria de fotos e integração com Google Maps.</p>
             <div class="projetos-btns">
-              <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
-              <a href="https://github.com/rafael-trajano/forrobodo-junino" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/forrobodo-junino" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
             </div>
           </div>
           <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Forrobodó Junino"></a>
         </article>
 
-        <!-- Projeto 3 — Cachaça Forrobodó -->
+        <!-- Projeto 4 — Cachaça Forrobodó -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
             <img src="imagens/imagem-forrobodo.webp" alt="Site Institucional — Cachaça Forrobodó" loading="lazy">
@@ -265,45 +379,10 @@
             <h3>Site Institucional — Cachaça Forrobodó</h3>
             <p>Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
             <div class="projetos-btns">
-              <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
-              <a href="https://github.com/rafael-trajano/forrobodo" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/forrobodo" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
             </div>
           </div>
           <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Forrobodó"></a>
-        </article>
-
-        <!-- Projeto 4 — Cachaça Afetuosa -->
-        <article class="projetos-card animar">
-          <div class="projetos-img-wrap">
-            <img src="imagens/imagem-afetuosa.webp" alt="Site Institucional — Cachaça Afetuosa" loading="lazy">
-            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
-          </div>
-          <div class="projetos-conteudo">
-            <h3>Site Institucional — Cachaça Afetuosa</h3>
-            <p>Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
-            <div class="projetos-btns">
-              <a href="https://afetuosa.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
-              <a href="https://github.com/rafael-trajano/afetuosa" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
-            </div>
-          </div>
-          <a href="https://afetuosa.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Afetuosa"></a>
-        </article>
-
-        <!-- Projeto 5 — Portfólio -->
-        <article class="projetos-card animar">
-          <div class="projetos-img-wrap">
-            <img src="imagens/imagem-portfolio.webp" alt="Portfólio — Rafael Trajano" loading="lazy">
-            <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
-          </div>
-          <div class="projetos-conteudo">
-            <h3>Portfólio — Rafael Trajano</h3>
-            <p>Portfólio com meu perfil profissional, principais projetos, tecnologias utilizadas e canais de contato.</p>
-            <div class="projetos-btns">
-              <a href="https://rafaeltrajano.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-link-site">Ver Projeto</a>
-              <a href="https://github.com/rafael-trajano/portfolio" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo">Ver GitHub</a>
-            </div>
-          </div>
-          <a href="https://rafaeltrajano.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Portfólio"></a>
         </article>
 
       </div>
@@ -348,7 +427,6 @@
     <div class="footer-info">
         <p class="footer-copyright">© 2026 Rafael Trajano — Todos os direitos reservados</p>
         <p class="footer-linha">E-mail: <a href="mailto:rafatrajaninhortn@gmail.com">rafatrajaninhortn@gmail.com</a></p>
-        <p class="footer-linha">Tel: <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer">(83) 98670-3374</a></p>
     </div>
     <div class="footer-social">
         <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="icone icone-whatsapp" aria-hidden="true"></i>

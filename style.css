@@ -19,12 +19,36 @@ ARQUITETURA CSS — RAFAEL TRAJANO
     color-scheme: light;
 
     /* Cores */
-    --cor-primaria: #652083;
-    --cor-hover: rgb(120, 0, 180);
+    --cor-primaria: #6C2E9E;
+    --cor-hover: #7E3CB8;
     --cor-preto: #14121A;
     --cor-branca: rgb(255, 255, 255);
     --cor-fundo: #FAF8FF;
-    --cor-caixa-clara: #E9DFF9;
+    --cor-caixa-clara: #EBDFF7;
+
+    /* Cores por tema (claro) */
+    --cor-card: #FFFFFF;
+    --cor-caixa: #F4EFFD;
+    --cor-borda: #E5E5E5;
+    --cor-botao: #6C2E9E;
+    --cor-botao-hover: #7E3CB8;
+    --cor-rodape: #14121A;
+    --cor-seta: rgba(0, 0, 0, 0.45);
+
+    /* Botão secundário (estilo do Jornada) */
+    --btn2-texto: #6A5C80;
+    --btn2-borda: #E6DCF3;
+    --btn2-texto-hover: #3F1F62;
+    --btn2-borda-hover: #C9AEEA;
+
+    /* Céu (claro = dia) */
+    --ceu-1: #F8F2FD;
+    --ceu-2: #E6D6F6;
+    --ceu-nuvem: #FFFFFF;
+    --ceu-ponto: transparent;
+    --ceu-brilho: #F6C94C;
+    --ceu-brilho-branco: #F6C94C;
+    --ceu-trilha: rgba(108, 46, 158, 0.38);
 
     /* Radius */
     --radius-sm: 8px;
@@ -42,6 +66,49 @@ ARQUITETURA CSS — RAFAEL TRAJANO
     /* Fontes */
     --fonte-titulo: 'Barlow Condensed', sans-serif;
     --fonte-corpo: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Tema escuro (noite) */
+:root[data-tema="escuro"] {
+    color-scheme: dark;
+
+    --cor-primaria: #9D5CD6;
+    --cor-hover: #A96DDB;
+    --cor-preto: #EEE8FB;
+    --cor-fundo: #0E1823;
+    --cor-caixa-clara: #253244;
+
+    --cor-card: #152231;
+    --cor-caixa: #1A2838;
+    --cor-borda: rgba(255, 255, 255, 0.07);
+    --cor-botao: #9D5CD6;
+    --cor-botao-hover: #A96DDB;
+    --cor-rodape: #09111A;
+    --cor-seta: rgba(255, 255, 255, 0.55);
+
+    --btn2-texto: #9B93B3;
+    --btn2-borda: #222F40;
+    --btn2-texto-hover: #F1ECFA;
+    --btn2-borda-hover: #4A3C6E;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+    --ceu-1: #2B2758;
+    --ceu-2: #18213A;
+    --ceu-nuvem: #3B3670;
+    --ceu-ponto: #E9E2FF;
+    --ceu-brilho: #FFD970;
+    --ceu-brilho-branco: #FFFFFF;
+    --ceu-trilha: rgba(233, 226, 255, 0.5);
+}
+
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 /* 2. RESET */
@@ -78,6 +145,7 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-preto);
     overflow-x: hidden;
+    transition: background-color var(--transition), color var(--transition);
 }
 
 body.menu-aberto {
@@ -191,15 +259,11 @@ img {
     letter-spacing: -0.01em;
 }
 
-.logo-link:hover .logo-texto {
-    color: var(--cor-hover);
-}
-
 .header-cta {
     padding: 10px 32px;
     border-radius: var(--radius-sm);
     color: var(--cor-branca);
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-botao);
     font-weight: bold;
     font-size: 0.85rem;
     letter-spacing: 0.02em;
@@ -207,7 +271,7 @@ img {
 }
 
 .header-cta:hover {
-    background-color: var(--cor-hover);
+    background-color: var(--cor-botao-hover);
 }
 
 /* Main */
@@ -224,7 +288,7 @@ main {
     align-items: center;
     padding: 40px;
     gap: 24px;
-    background-color: var(--cor-preto);
+    background-color: var(--cor-rodape);
     color: var(--cor-branca);
 }
 
@@ -236,12 +300,8 @@ main {
     font-family: var(--fonte-titulo);
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--cor-fundo);
+    color: #9D5CD6;
     letter-spacing: -0.01em;
-}
-
-.footer-logo-texto:hover{
-    color: var(--cor-hover);
 }
 
 .footer-info {
@@ -296,7 +356,7 @@ main {
     display: inline-block;
     min-width: 220px;
     padding: 14px 12px;
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-botao);
     color: var(--cor-branca);
     border-radius: var(--radius-sm);
     font-weight: bold;
@@ -308,7 +368,7 @@ main {
 }
 
 .cta:hover {
-    background-color: var(--cor-hover);
+    background-color: var(--cor-botao-hover);
 }
 
 /* Menu hambúrguer */
@@ -338,7 +398,7 @@ main {
     width: 72px;
     height: auto;
     display: block;
-    filter: drop-shadow(0 2px 4px rgba(120, 0, 180, 0.25));
+    filter: drop-shadow(0 2px 4px rgba(108, 46, 158, 0.25));
     transition: filter var(--transition);
 }
 
@@ -373,6 +433,87 @@ main {
   letter-spacing: -0.01em;
 }
 
+/* Botão de tema (sol/lua) */
+
+.menu {
+    gap: 14px;
+}
+
+.tema-toggle {
+    position: relative;
+    width: 84px;
+    height: 40px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1.5px solid var(--cor-caixa-clara);
+    background-color: var(--cor-fundo);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.tema-toggle:hover {
+    transform: translateY(-2px);
+}
+
+/* fundo do lado ativo: preenche a metade inteira */
+.tema-bolinha {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--cor-caixa-clara);
+    transition: transform var(--transition);
+}
+
+[data-tema="escuro"] .tema-bolinha {
+    transform: translateX(100%);
+}
+
+.tema-icone {
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    overflow: visible;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.tema-icone-sol { opacity: 1; }
+.tema-icone-lua { opacity: 0.55; transform: scale(0.9); }
+[data-tema="escuro"] .tema-icone-sol { opacity: 0.55; transform: scale(0.9); }
+[data-tema="escuro"] .tema-icone-lua { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tema-bolinha,
+    .tema-icone {
+        transition: none;
+    }
+}
+
+/* Céu (início e sobre) — mesma arte do banner do LinkedIn */
+
+.ceu-ponto { fill: var(--ceu-ponto); }
+.ceu-brilho { fill: var(--ceu-brilho); }
+.ceu-brilho-branco { fill: var(--ceu-brilho-branco); }
+.ceu-nuvem { fill: var(--ceu-nuvem); }
+
+.ceu-trilha {
+    fill: none;
+    stroke: var(--ceu-trilha);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 1 14;
+}
+
+.sobre-sol { display: none; }
+[data-tema="claro"] .sobre-lua { display: none; }
+[data-tema="claro"] .sobre-sol { display: inline; }
+
 /* Overlay */
 
 .menu-overlay {
@@ -398,7 +539,7 @@ main {
     right: 0;
     width: min(300px, 70vw);
     height: 100dvh;
-    background-color: var(--cor-branca);
+    background-color: var(--cor-card);
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
@@ -417,7 +558,7 @@ main {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--cor-borda);
     flex-shrink: 0;
 }
 
@@ -435,7 +576,7 @@ main {
 }
 
 .nav li {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--cor-borda);
 }
 
 .nav li a {
@@ -459,7 +600,7 @@ main {
     justify-content: center;
     gap: 28px;
     padding: 24px 20px 32px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--cor-borda);
     flex-shrink: 0;
 }
 
@@ -501,6 +642,8 @@ main {
     justify-content: center;
     gap: 90px;
     min-height: calc(100vh - 70px);
+    position: relative;
+    isolation: isolate;
 }
 
 .home-texto {
@@ -563,7 +706,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 16px;
-    background-color: #F4EFFD;
+    background-color: var(--cor-caixa);
     border-radius: 48px;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
@@ -578,12 +721,31 @@ main {
 
 .home-cta {
     margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
 .home-cta .cta {
-    width: 280px;
+    min-width: 210px;
     font-size: 1rem;
-    padding: 12px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+}
+
+.home-cta .cta-secundario {
+    background-color: transparent;
+    color: var(--btn2-texto);
+    border: 2px solid var(--btn2-borda);
+    box-shadow: none;
+}
+
+/* hover como no Jornada: borda mais forte e texto mais escuro (no escuro, mais claro), sem preencher */
+.home-cta .cta-secundario:hover {
+    background-color: transparent;
+    color: var(--btn2-texto-hover);
+    border-color: var(--btn2-borda-hover);
 }
 
 /* Sobre */
@@ -627,7 +789,7 @@ main {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background-color: #F4EFFD;
+  background-color: var(--cor-caixa);
   border-radius: 48px;
   box-shadow: var(--shadow-md);
   position: relative;
@@ -717,7 +879,7 @@ main {
     flex: 0 0 auto;
     width: 130px;
     aspect-ratio: 1 / 1;
-    background-color: var(--cor-branca);
+    background-color: var(--cor-card);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     display: flex;
@@ -793,7 +955,7 @@ main {
     flex: 0 0 calc((100% - 32px) / 2);
     scroll-snap-align: start;
     position: relative;
-    background-color: var(--cor-branca);
+    background-color: var(--cor-card);
     border-radius: 28px;
     overflow: hidden;
     text-align: left;
@@ -832,7 +994,7 @@ main {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(109, 40, 217, 0.55), transparent 65%);
+    background: linear-gradient(to top, rgba(108, 46, 158, 0.55), transparent 65%);
     opacity: 0;
     transition: var(--transition);
 }
@@ -847,7 +1009,7 @@ main {
     bottom: 16px;
     padding: 6px 14px;
     border-radius: 999px;
-    background: rgba(120, 0, 180, 0.25);
+    background: rgba(108, 46, 158, 0.25);
     backdrop-filter: blur(6px);
     color: var(--cor-branca);
     font-size: 0.7rem;
@@ -890,23 +1052,27 @@ main {
     gap: 14px;
 }
 
-.projetos-link-site,
+/* Link discreto para o código (o card inteiro já abre o projeto) */
+
 .projetos-link-codigo {
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: var(--radius-sm);
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--cor-primaria);
     font-weight: bold;
     font-size: 0.85rem;
-    text-align: center;
     letter-spacing: 0.02em;
+    border-bottom: 1.5px solid transparent;
     transition: var(--transition);
 }
 
-.projetos-link-site:hover,
+.projetos-link-codigo .icone {
+    font-size: 1.05rem;
+}
+
 .projetos-link-codigo:hover {
-    background-color: var(--cor-hover);
+    color: var(--cor-hover);
+    border-bottom-color: currentColor;
 }
 
 .projetos-seta {
@@ -926,8 +1092,8 @@ main {
     display: block;
     width: 16px;
     height: 16px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.45);
-    border-left: 3px solid rgba(0, 0, 0, 0.45);
+    border-bottom: 3px solid var(--cor-seta);
+    border-left: 3px solid var(--cor-seta);
     transition: border-color var(--transition);
 }
 
@@ -973,7 +1139,7 @@ main {
     width: 100%;
     max-width: 100px;
     aspect-ratio: 1 / 1;
-    background-color: var(--cor-branca);
+    background-color: var(--cor-card);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     display: flex;
@@ -1089,6 +1255,12 @@ main {
         min-height: 260px;
     }
 
+    .home-cta {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
     .home-cta .cta {
         width: 100%;
         max-width: 280px;
@@ -1101,12 +1273,19 @@ main {
         gap: 20px;
     }
 
+    /* no celular, o boneco fica abaixo do texto do Sobre */
     .sobre-imagem-wrap {
-        display: none;
+        order: 2;
+        margin-top: 12px;
+    }
+
+    .sobre-imagem {
+        max-width: 240px;
+        border-radius: 36px;
     }
 
     .texto-sobre p {
-        text-align: justify;
+        text-align: left;
     }
 
     /* Tecnologias */
@@ -1168,16 +1347,23 @@ main {
         padding: 20px;
     }
 
-    .projetos-btns {
-        justify-content: center;
+
+
+    /* Botão de tema */
+
+    .menu {
+        gap: 8px;
     }
 
-    .projetos-link-site {
-        display: none;
+    .tema-toggle {
+        width: 72px;
+        height: 36px;
+        border-radius: 10px;
     }
 
-    .projetos-link-codigo {
-        width: 100%;
+    .tema-icone {
+        width: 19px;
+        height: 19px;
     }
 
     /* Contato */
@@ -1217,4 +1403,95 @@ main {
         text-align: center;      
         justify-self: center;
 }
+}
+/* Início: arte do céu no lugar da ilustração */
+
+.home-imagem-wrap {
+    max-width: 460px;
+}
+
+.home-ilustra {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.ceu-stop-1 { stop-color: var(--ceu-1); }
+.ceu-stop-2 { stop-color: var(--ceu-2); }
+.ilustra-trilha { stroke-width: 6; }
+
+@media (max-width: 768px) {
+    .home-imagem-wrap {
+        max-width: 300px;
+    }
+}
+
+/* Sobre: boneco sobre o céu */
+.sobre-boneco {
+    position: relative;
+    display: flex;
+    background: radial-gradient(circle at 50% 45%, var(--ceu-1) 0%, var(--ceu-2) 100%);
+    overflow: hidden;
+}
+
+.sobre-boneco-ceu {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sobre-boneco img {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 14px 24px rgba(30, 10, 70, 0.35));
+}
+
+/* Celular: como no Jornada — texto, ilustração e depois os botões */
+@media (max-width: 768px) {
+    .home {
+        gap: 28px;
+        padding-top: 48px;
+    }
+
+    .home-texto {
+        display: contents;
+    }
+
+    .home-texto h1,
+    .home-subtitulo,
+    .home-desc {
+        text-align: center;
+        order: 1;
+    }
+
+    .home-subtitulo {
+        margin-top: -16px;
+    }
+
+    .home-desc {
+        margin-top: -12px;
+        padding: 0 8px;
+    }
+
+    .home-imagem-wrap {
+        order: 2;
+        width: 100%;
+    }
+
+    .home-cta {
+        order: 3;
+        margin-top: 0;
+    }
+}
+
+/* Boneco: tela do notebook com céu de dia (claro) ou de noite (escuro) */
+.boneco-noite { display: none; }
+[data-tema="escuro"] .boneco-dia { display: none; }
+[data-tema="escuro"] .boneco-noite { display: block; }
+
+.sobre-boneco img {
+    width: 86%;
 }
