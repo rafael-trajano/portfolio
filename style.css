@@ -13,6 +13,48 @@ ARQUITETURA CSS — RAFAEL TRAJANO
 9. RESPONSIVIDADE (1024px, 768px)
 */
 
+/* 0. FONTES (hospedadas no próprio site) */
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fontes/barlow-condensed-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("fontes/barlow-condensed-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fontes/plus-jakarta-sans-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("fontes/plus-jakarta-sans-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("fontes/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
+}
+
 /* 1. ROOT */
 
 :root {
@@ -72,8 +114,8 @@ ARQUITETURA CSS — RAFAEL TRAJANO
 :root[data-tema="escuro"] {
     color-scheme: dark;
 
-    --cor-primaria: #9D5CD6;
-    --cor-hover: #A96DDB;
+    --cor-primaria: #AB79D8;
+    --cor-hover: #BC8FE2;
     --cor-preto: #EEE8FB;
     --cor-fundo: #0E1823;
     --cor-caixa-clara: #253244;
@@ -81,8 +123,8 @@ ARQUITETURA CSS — RAFAEL TRAJANO
     --cor-card: #152231;
     --cor-caixa: #1A2838;
     --cor-borda: rgba(255, 255, 255, 0.07);
-    --cor-botao: #9D5CD6;
-    --cor-botao-hover: #A96DDB;
+    --cor-botao: #8439C6;
+    --cor-botao-hover: #9147D0;
     --cor-rodape: #09111A;
     --cor-seta: rgba(255, 255, 255, 0.55);
 
@@ -311,13 +353,13 @@ main {
 
 .footer-copyright {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #B4B0BE;
     margin-bottom: 8px;
 }
 
 .footer-linha {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #B4B0BE;
     margin-bottom: 8px;
 }
 
