@@ -1721,3 +1721,17 @@ main {
         transform: translateY(6%);
     }
 }
+
+/* Menu e overlay fechados ficam realmente ocultos:
+   o teclado não entra no menu escondido e as ferramentas de acessibilidade
+   não confundem o fundo do menu com o fundo do rodapé */
+.nav,
+.menu-overlay {
+    visibility: hidden;
+    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
+}
+
+.nav.ativo,
+.menu-overlay.ativo {
+    visibility: visible;
+}
