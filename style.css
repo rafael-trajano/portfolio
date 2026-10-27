@@ -1534,13 +1534,10 @@ main {
     border: 0;
 }
 
-/* Celular: Sobre centralizado */
+/* Celular: Sobre todo alinhado à esquerda */
 @media (max-width: 768px) {
     .sobre-conteudo,
-    .sobre-conteudo h2 {
-        text-align: center;
-    }
-
+    .sobre-conteudo h2,
     .texto-sobre p {
         text-align: left;
     }
@@ -1604,4 +1601,81 @@ main {
 
 .sobre-boneco img {
     width: 100%;
+}
+
+/* Menu lateral com o céu de cada tema */
+.nav {
+    background: radial-gradient(ellipse at 50% 30%, var(--ceu-1) 0%, var(--ceu-2) 100%);
+}
+
+@media (max-width: 768px) {
+    /* seletor de tema: fundo neutro, sem parecer "ativado" */
+    .tema-toggle {
+        background-color: #EFEEF2;
+        border-color: #E2E0E8;
+    }
+
+    [data-tema="escuro"] .tema-toggle {
+        background-color: #1A2430;
+        border-color: #263241;
+    }
+
+    /* elipse do Sobre centralizada, com o boneco centralizado nela */
+
+
+    /* cards de projeto sem o movimento de subir */
+    .projetos-card.animar:hover {
+        transform: none;
+    }
+
+    /* copyright em uma linha */
+    .footer-copyright,
+    .footer-linha {
+        font-size: 0.74rem;
+        white-space: nowrap;
+    }
+
+    .footer-linha a {
+        font-weight: 500;
+    }
+}
+
+/* Sobre: elipse larga (como antes), com o boneco centralizado nela */
+.sobre-boneco-ceu {
+    left: 2%;
+    top: 14%;
+    width: 112%;
+    height: 82%;
+}
+
+/* boneco no centro da elipse (centro da elipse: 58% x 55% do quadro) */
+.sobre-boneco img {
+    width: 90%;
+    margin: 0 auto;
+    transform: translate(8.9%, 6.2%);
+}
+
+/* Sem o brilho em volta das ilustrações (início e Sobre) */
+.home-imagem-glow,
+.sobre-imagem-glow {
+    display: none;
+}
+
+/* Sobre: mesmo tamanho de elipse de antes no computador */
+@media (min-width: 769px) {
+    .sobre-imagem.sobre-boneco {
+        max-width: 350px;
+    }
+}
+
+/* Celular: elipse no centro da tela e boneco centralizado dentro dela */
+@media (max-width: 768px) {
+    .sobre-boneco-ceu {
+        left: -6%;
+    }
+
+    .sobre-boneco img {
+        width: 80%;
+        transform: translateY(6%);
+    }
 }
