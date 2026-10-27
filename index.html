@@ -81,14 +81,27 @@
             <stop offset="0" class="ceu-stop-1"/>
             <stop offset="1" class="ceu-stop-2"/>
         </radialGradient>
+        <symbol id="logo-sol" viewBox="-80 -80 160 160">
+            <g stroke="#f6c94c" stroke-width="9" stroke-linecap="round"><path d="M0,-74 v14 M0,60 v14 M-74,0 h14 M60,0 h14 M-52,-52 l10,10 M42,42 l10,10 M-52,52 l10,-10 M42,-42 l10,-10"/></g>
+            <circle r="46" fill="#fbd65a"/>
+            <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
+            <circle cx="-30" cy="8" r="6" fill="#f5a9a0" opacity=".8"/><circle cx="30" cy="8" r="6" fill="#f5a9a0" opacity=".8"/>
+        </symbol>
+        <symbol id="logo-lua" viewBox="-80 -80 160 160">
+            <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
+            <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="-48" cy="18" r="6" fill="#f5a9a0" opacity=".75"/>
+        </symbol>
         <mask id="lua-mascara" maskUnits="userSpaceOnUse" x="-80" y="-80" width="160" height="160"><circle r="62" fill="#fff"/><circle cx="30" cy="-20" r="54" fill="#000"/></mask>
     </defs>
 </svg>
 
 <!-- Header -->
     <header class="header">
-        <a href="#home" class="logo-link">
-            <span class="logo-texto">Rafael Trajano</span>
+        <a href="#home" class="logo-link" aria-label="Rafael Trajano, voltar ao início">
+            <svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span>
         </a>
         <div class="menu">
             <button class="tema-toggle" type="button" role="switch" aria-checked="false" aria-label="Tema escuro">
@@ -118,7 +131,7 @@
 <!-- Nav -->
     <nav class="nav" id="nav-principal" aria-label="Menu principal">
         <div class="nav-header">
-            <span class="nav-logo-texto">Rafael Trajano</span>
+            <span class="nav-logo"><svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span></span>
             <button class="menu-fechar" aria-label="Fechar menu">✕</button>
         </div>
         <ul>
@@ -162,10 +175,15 @@
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(60 200) scale(.8)"/>
                 <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(40 120) scale(.7)"/>
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(395 175) scale(.9)"/>
-                <circle class="ceu-ponto" cx="300" cy="120" r="2"/><circle class="ceu-ponto" cx="140" cy="300" r="1.8"/>
+                <circle class="ceu-ponto" cx="300" cy="120" r="2"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(205 45) scale(.7)"/>
+                <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(350 70) scale(.9)"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(160 235) scale(.6)"/>
+                <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(255 205) scale(.55)"/>
+                <use href="#ceu-sp" class="ceu-brilho" transform="translate(110 320) scale(.7)"/>
+                <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(390 255) scale(.6)"/>
+                <circle class="ceu-ponto" cx="180" cy="110" r="1.6"/><circle class="ceu-ponto" cx="330" cy="225" r="1.6"/><circle class="ceu-ponto" cx="70" cy="140" r="1.5"/><circle class="ceu-ponto" cx="140" cy="300" r="1.8"/>
                 <circle class="ceu-ponto" cx="230" cy="250" r="1.6"/><circle class="ceu-ponto" cx="90" cy="60" r="1.6"/>
-                <path class="ceu-trilha ilustra-trilha" d="M0,345 C70,320 130,300 170,262 C205,228 178,196 152,212 C126,228 152,272 210,258 C280,240 330,170 372,96"/>
-                <use href="#ceu-sp" class="ceu-brilho" transform="translate(380 82) scale(2.4)"/>
                 <g class="sobre-lua" transform="translate(115 105) scale(.85)">
                     <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
                     <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
@@ -181,6 +199,7 @@
                 </g>
                 <g class="ceu-nuvem">
                     <g transform="translate(250 300)"><circle r="28"/><circle cx="33" cy="-14" r="36"/><circle cx="70" cy="2" r="26"/><circle cx="98" cy="10" r="18"/><rect width="98" height="30"/></g>
+                    <g transform="translate(300 150)"><circle r="18"/><circle cx="20" cy="-8" r="23"/><circle cx="44" cy="2" r="16"/><rect width="44" height="16"/></g>
                     <g transform="translate(40 280)"><circle r="16"/><circle cx="18" cy="-7" r="20"/><circle cx="38" cy="2" r="14"/><rect width="38" height="14"/></g>
                 </g>
             </svg>
@@ -195,26 +214,11 @@
       <!-- Ilustração sobre o céu -->
       <div class="sobre-imagem sobre-boneco">
         <svg class="sobre-boneco-ceu" viewBox="0 0 340 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <circle class="ceu-ponto" cx="150" cy="22" r="1.8"/><circle class="ceu-ponto" cx="230" cy="70" r="1.6"/>
-          <circle class="ceu-ponto" cx="18" cy="140" r="1.5"/><circle class="ceu-ponto" cx="322" cy="205" r="1.8"/>
-          <circle class="ceu-ponto" cx="200" cy="318" r="1.6"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(178 34) scale(.8)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(26 196) scale(.7)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(318 150) scale(.75)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(110 318) scale(.6)"/>
-          <!-- sol (claro) e lua (escuro) no canto -->
-          <g class="sobre-lua" transform="translate(52 56) scale(.42)">
-            <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
-            <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <circle cx="-48" cy="18" r="6" fill="#f5a9a0" opacity=".75"/>
-          </g>
-          <g class="sobre-sol" transform="translate(50 54) scale(.4)">
-            <g stroke="#f6c94c" stroke-width="10" stroke-linecap="round"><path d="M0,-74 v14 M0,60 v14 M-74,0 h14 M60,0 h14 M-52,-52 l10,10 M42,42 l10,10 M-52,52 l10,-10 M42,-42 l10,-10"/></g>
-            <circle r="46" fill="#fbd65a"/>
-            <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
-          </g>
+          <use href="#ceu-sp" class="ceu-brilho" transform="translate(258 95) scale(.9)"/>
+          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(318 155) scale(.75)"/>
+          <use href="#ceu-sp" class="ceu-brilho" transform="translate(290 240) scale(.7)"/>
+          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(32 150) scale(.6)"/>
+          <use href="#ceu-sp" class="ceu-brilho" transform="translate(48 250) scale(.6)"/>
         </svg>
         <img class="boneco-dia" src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
         <img class="boneco-noite" src="imagens/desenho-rafael-noite.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
@@ -225,7 +229,7 @@
       <h2>Minha Jornada</h2>
       <div class="texto-sobre">
         <p>
-          Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela Universidade Estadual da Paraíba e estagiário de Engenharia de Software no <strong>NUTES</strong>.
+          Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela UEPB e estagiário de Engenharia de Software no <strong>NUTES</strong>.
           Também desenvolvi o <strong>Jornada</strong>, um sistema de estudos gamificado que é o meu TCC.
         </p>
         <p>
@@ -422,7 +426,7 @@
 
 <footer class="footer">
     <a href="#home" class="footer-logo">
-        <span class="footer-logo-texto">Rafael Trajano</span>
+        <svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span>
     </a>
     <div class="footer-info">
         <p class="footer-copyright">© 2026 Rafael Trajano — Todos os direitos reservados</p>
