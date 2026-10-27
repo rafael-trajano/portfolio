@@ -1322,7 +1322,7 @@ main {
     }
 
     .tecnologias-card p {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
     }
 
     /* Projetos */
@@ -1384,7 +1384,7 @@ main {
     }
 
     .contato-card p {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
     }
 
     /* Footer */
@@ -1631,7 +1631,7 @@ main {
     /* copyright em uma linha */
     .footer-copyright,
     .footer-linha {
-        font-size: 0.74rem;
+        font-size: 0.8rem;
         white-space: nowrap;
     }
 
@@ -1675,7 +1675,7 @@ main {
     }
 
     .sobre-boneco img {
-        width: 80%;
+        width: 92%;
         transform: translateY(6%);
     }
 }
