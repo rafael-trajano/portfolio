@@ -111,40 +111,119 @@ function initProjetosCarrossel() {
     setaPrev.addEventListener('click', irParaAnterior);
 }
 
-// Função Tema (claro/escuro)
+// Função Tema (segue o tema do sistema)
 
 function initTema() {
-    const botao = document.querySelector('.tema-toggle');
     const raiz = document.documentElement;
+    const preferencia = window.matchMedia('(prefers-color-scheme: dark)');
+
+    preferencia.addEventListener('change', (event) => {
+        raiz.setAttribute('data-tema', event.matches ? 'escuro' : 'claro');
+    });
+}
+
+// Função Idioma (português/inglês)
+
+const TRADUCOES_EN = {
+    titulo: 'Rafael Trajano | Full-Stack Developer',
+    descricao: 'Portfolio of Rafael Trajano, Full-Stack Developer specialized in JavaScript, React, Python, FastAPI and automated testing (Cucumber, Cypress).',
+    logo: 'Rafael Trajano, back to top',
+    abrirMenu: 'Open navigation menu',
+    menuPrincipal: 'Main menu',
+    fecharMenu: 'Close menu',
+    navHome: 'Home',
+    navSobre: 'About',
+    navTec: 'Technologies',
+    navProjetos: 'Projects',
+    navContato: 'Contact',
+    homeDesc: 'I build complete web systems, from modeling to interface.',
+    ctaCurriculo: 'Download Résumé',
+    curriculo: 'arquivos/curriculo-rafael-trajano-en.pdf',
+    ctaProjetos: 'View Projects',
+    sobreTitulo: 'My Journey',
+    sobre1: "Hi, I'm Rafael Trajano, a <strong>Computer Science</strong> student at UEPB and a Software Engineering Intern at <strong>NUTES</strong>. I also built <strong>Jornada</strong>, a gamified study platform that is my undergraduate thesis.",
+    sobre2: "Beyond technical skills, I'm communicative, empathetic and patient, qualities that help me always try to understand other people's perspectives.",
+    bonecoAlt: 'Illustration of Rafael Trajano, Full-Stack Developer',
+    tecTitulo: 'My Stack',
+    tecAria: 'Technologies I use',
+    projTitulo: 'My Portfolio',
+    projAnterior: 'Previous project',
+    projProximo: 'Next project',
+    verGithub: 'View GitHub',
+    jornadaAlt: 'Jornada — Gamified study platform',
+    jornadaTitulo: 'Jornada — Study Platform (Thesis)',
+    jornadaDesc: 'Gamified study platform with streaks, trophies and study groups with leaderboards among friends.',
+    jornadaAria: 'Visit the Jornada project website',
+    voltAlt: 'VoltControl — Energy Monitoring Dashboard',
+    voltTitulo: 'VoltControl — Energy Dashboard',
+    voltDesc: 'Dashboard for tracking electricity consumption, with comparison chart, history and PDF export.',
+    voltAria: 'Visit the VoltControl project website',
+    juninoAlt: 'Event Website — Forrobodó Junino',
+    juninoTitulo: 'Event Website — Forrobodó Junino',
+    juninoDesc: 'Website to promote an event, with schedule, photo gallery and Google Maps integration.',
+    juninoAria: 'Visit the Forrobodó Junino project website',
+    cachacaAlt: 'Institutional Website — Cachaça Forrobodó',
+    cachacaTitulo: 'Institutional Website — Cachaça Forrobodó',
+    cachacaDesc: 'Institutional website with brand history, product catalog, visiting information and contact channels.',
+    cachacaAria: 'Visit the Cachaça Forrobodó project website',
+    contatoTitulo: "Let's Talk",
+    copyright: '© 2026 Rafael Trajano — All rights reserved',
+    emailRotulo: 'Email:'
+};
+
+function initIdioma() {
+    const raiz = document.documentElement;
+    const botao = document.querySelector('.idioma-toggle');
+    const metaDescricao = document.querySelector('meta[name="description"]');
+
+    // Cada tipo de marcação: [atributo data-*, o que é trocado no elemento]
+    const alvos = [
+        ['i18n', (el, valor) => { el.innerHTML = valor; }, (el) => el.innerHTML],
+        ['i18nAria', (el, valor) => el.setAttribute('aria-label', valor), (el) => el.getAttribute('aria-label')],
+        ['i18nAlt', (el, valor) => el.setAttribute('alt', valor), (el) => el.getAttribute('alt')],
+        ['i18nHref', (el, valor) => el.setAttribute('href', valor), (el) => el.getAttribute('href')]
+    ];
+
+    // Guarda os textos originais em português, que estão no próprio HTML
+    const originais = [];
+    alvos.forEach(([chave, aplicar, ler]) => {
+        const seletor = '[data-' + chave.replace(/[A-Z]/g, (l) => '-' + l.toLowerCase()) + ']';
+        document.querySelectorAll(seletor).forEach((el) => {
+            originais.push({ el, chave: el.dataset[chave], aplicar, pt: ler(el) });
+        });
+    });
+    const tituloPt = document.title;
+    const descricaoPt = metaDescricao ? metaDescricao.getAttribute('content') : '';
+
+    function aplicarIdioma(idioma) {
+        const ingles = idioma === 'en';
+        raiz.setAttribute('data-idioma', idioma);
+        raiz.setAttribute('lang', ingles ? 'en' : 'pt-BR');
+
+        originais.forEach(({ el, chave, aplicar, pt }) => {
+            aplicar(el, ingles && TRADUCOES_EN[chave] ? TRADUCOES_EN[chave] : pt);
+        });
+
+        document.title = ingles ? TRADUCOES_EN.titulo : tituloPt;
+        if (metaDescricao) metaDescricao.setAttribute('content', ingles ? TRADUCOES_EN.descricao : descricaoPt);
+        if (botao) botao.setAttribute('aria-label', ingles ? 'Mudar para português' : 'Switch to English');
+    }
+
+    aplicarIdioma(raiz.getAttribute('data-idioma') === 'en' ? 'en' : 'pt');
 
     if (!botao) return;
 
-    function aplicarTema(tema) {
-        raiz.setAttribute('data-tema', tema);
-        botao.setAttribute('aria-checked', tema === 'escuro' ? 'true' : 'false');
-    }
-
-    // O tema inicial já foi aplicado no <head>; aqui só sincroniza o rótulo do botão
-    aplicarTema(raiz.getAttribute('data-tema') || 'claro');
-
     botao.addEventListener('click', () => {
-        const novoTema = raiz.getAttribute('data-tema') === 'escuro' ? 'claro' : 'escuro';
-        aplicarTema(novoTema);
-        try { localStorage.setItem('tema', novoTema); } catch (e) {}
-    });
-
-    // Se a pessoa não escolheu um tema, acompanha o tema do sistema
-    const preferencia = window.matchMedia('(prefers-color-scheme: dark)');
-    preferencia.addEventListener('change', (event) => {
-        let salvo = null;
-        try { salvo = localStorage.getItem('tema'); } catch (e) {}
-        if (!salvo) aplicarTema(event.matches ? 'escuro' : 'claro');
+        const novoIdioma = raiz.getAttribute('data-idioma') === 'en' ? 'pt' : 'en';
+        aplicarIdioma(novoIdioma);
+        try { localStorage.setItem('idioma', novoIdioma); } catch (e) {}
     });
 }
 
 // Inicialização
 
 initTema();
+initIdioma();
 initMenu();
 initAnimacoes();
 initProjetosCarrossel();

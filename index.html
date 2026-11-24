@@ -36,15 +36,18 @@
     <link rel="icon" type="image/png" href="imagens/favicon-sol.png">
     <link rel="apple-touch-icon" href="imagens/favicon-sol.png">
 
-    <!-- Tema: aplica antes de carregar o CSS para evitar "piscar" -->
+    <!-- Tema (segue o sistema) e idioma: aplicados antes do CSS para evitar "piscar" -->
     <script>
       (function () {
-        var tema = null;
-        try { tema = localStorage.getItem('tema'); } catch (e) {}
-        if (tema !== 'claro' && tema !== 'escuro') {
-          tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+        var raiz = document.documentElement;
+        raiz.setAttribute('data-tema', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro');
+        var idioma = null;
+        try { idioma = localStorage.getItem('idioma'); } catch (e) {}
+        if (idioma !== 'pt' && idioma !== 'en') {
+          idioma = /^pt/i.test(navigator.language || '') ? 'pt' : 'en';
         }
-        document.documentElement.setAttribute('data-tema', tema);
+        raiz.setAttribute('data-idioma', idioma);
+        raiz.setAttribute('lang', idioma === 'en' ? 'en' : 'pt-BR');
       })();
     </script>
 
@@ -99,27 +102,16 @@
 
 <!-- Header -->
     <header class="header">
-        <a href="#home" class="logo-link" aria-label="Rafael Trajano, voltar ao início">
+        <a href="#home" class="logo-link" aria-label="Rafael Trajano, voltar ao início" data-i18n-aria="logo">
             <svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span>
         </a>
         <div class="menu">
-            <button class="tema-toggle" type="button" role="switch" aria-checked="false" aria-label="Tema escuro">
-                <span class="tema-bolinha" aria-hidden="true"></span>
-                <svg class="tema-icone tema-icone-sol" viewBox="-80 -80 160 160" aria-hidden="true">
-                    <g stroke="#f6c94c" stroke-width="11" stroke-linecap="round"><path d="M0,-74 v12 M0,62 v12 M-74,0 h12 M62,0 h12 M-52,-52 l9,9 M43,43 l9,9 M-52,52 l9,-9 M43,-43 l9,-9"/></g>
-                    <circle r="44" fill="#fbd65a"/>
-                    <path d="M-24,-6 q6,-7 12,0 M12,-6 q6,-7 12,0" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
-                    <path d="M-14,10 q14,16 28,0 z" fill="#7a5a3a"/>
-                    <circle cx="-29" cy="8" r="6" fill="#f5a9a0" opacity=".85"/><circle cx="29" cy="8" r="6" fill="#f5a9a0" opacity=".85"/>
-                </svg>
-                <svg class="tema-icone tema-icone-lua" viewBox="-70 -70 140 140" aria-hidden="true">
-                    <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
-                    <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-                    <path d="M-36,30 q8,8 16,0" stroke="#7a5a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-                    <circle cx="-48" cy="18" r="7" fill="#f5a9a0" opacity=".8"/>
-                </svg>
+            <button class="idioma-toggle" type="button" aria-label="Switch to English">
+                <span class="idioma-bolinha" aria-hidden="true"></span>
+                <span class="idioma-opcao idioma-pt" aria-hidden="true">PT</span>
+                <span class="idioma-opcao idioma-en" aria-hidden="true">EN</span>
             </button>
-                <button class="menu-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false"
+                <button class="menu-hamburguer" aria-label="Abrir menu de navegação" data-i18n-aria="abrirMenu" aria-expanded="false"
                     aria-controls="nav-principal">  
                 <span class="menu-texto">Menu</span>
                 <img src="imagens/hamburguer.webp" alt="" class="menu-hamburguer-img" width="72" height="72" aria-hidden="true">
@@ -128,17 +120,17 @@
     </header>
 
 <!-- Nav -->
-    <nav class="nav" id="nav-principal" aria-label="Menu principal">
+    <nav class="nav" id="nav-principal" aria-label="Menu principal" data-i18n-aria="menuPrincipal">
         <div class="nav-header">
             <span class="nav-logo"><svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span></span>
-            <button class="menu-fechar" aria-label="Fechar menu">✕</button>
+            <button class="menu-fechar" aria-label="Fechar menu" data-i18n-aria="fecharMenu">✕</button>
         </div>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#tecnologias">Tecnologias</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#home" data-i18n="navHome">Home</a></li>
+            <li><a href="#sobre" data-i18n="navSobre">Sobre</a></li>
+            <li><a href="#tecnologias" data-i18n="navTec">Tecnologias</a></li>
+            <li><a href="#projetos" data-i18n="navProjetos">Projetos</a></li>
+            <li><a href="#contato" data-i18n="navContato">Contato</a></li>
         </ul>
         <div class="nav-social">
             <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="icone icone-whatsapp" aria-hidden="true"></i></a>
@@ -158,10 +150,10 @@
         <div class="home-texto">
             <h1 class="animar">Rafael <span>Trajano</span></h1>
             <p class="home-subtitulo"><strong>Full-Stack Developer</strong></p>
-            <p class="home-desc">Desenvolvo sistemas web completos, da modelagem à interface.</p>
+            <p class="home-desc" data-i18n="homeDesc">Desenvolvo sistemas web completos, da modelagem à interface.</p>
             <div class="home-cta">
-                <a href="arquivos/curriculo-rafael-trajano.pdf" download class="cta">Baixar Currículo</a>
-                <a href="#projetos" class="cta cta-secundario">Ver Projetos</a>
+                <a href="arquivos/curriculo-rafael-trajano.pdf" download class="cta" data-i18n="ctaCurriculo" data-i18n-href="curriculo">Baixar Currículo</a>
+                <a href="#projetos" class="cta cta-secundario" data-i18n="ctaProjetos">Ver Projetos</a>
             </div>
         </div>
         <div class="home-imagem-wrap">
@@ -174,15 +166,12 @@
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(60 200) scale(.8)"/>
                 <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(40 120) scale(.7)"/>
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(395 175) scale(.9)"/>
-                <circle class="ceu-ponto" cx="300" cy="120" r="2"/>
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(205 45) scale(.7)"/>
                 <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(350 70) scale(.9)"/>
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(160 235) scale(.6)"/>
                 <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(255 205) scale(.55)"/>
                 <use href="#ceu-sp" class="ceu-brilho" transform="translate(110 320) scale(.7)"/>
                 <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(390 255) scale(.6)"/>
-                <circle class="ceu-ponto" cx="180" cy="110" r="1.6"/><circle class="ceu-ponto" cx="330" cy="225" r="1.6"/><circle class="ceu-ponto" cx="70" cy="140" r="1.5"/><circle class="ceu-ponto" cx="140" cy="300" r="1.8"/>
-                <circle class="ceu-ponto" cx="230" cy="250" r="1.6"/><circle class="ceu-ponto" cx="90" cy="60" r="1.6"/>
                 <g class="sobre-lua" transform="translate(115 105) scale(.85)">
                     <circle r="62" fill="#fbe7a1" mask="url(#lua-mascara)"/>
                     <path d="M-46,2 q6,6 12,0" stroke="#7a5a3a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
@@ -212,38 +201,19 @@
       <div class="sobre-imagem-glow" aria-hidden="true"></div>
       <!-- Ilustração sobre o céu -->
       <div class="sobre-imagem sobre-boneco">
-        <svg class="sobre-boneco-ceu" viewBox="0 0 340 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(27 120) scale(0.85)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(33 233) scale(0.65)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(265 80) scale(0.75)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(319 140) scale(0.8)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(322 236) scale(0.65)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(88 72) scale(0.6)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(300 290) scale(0.55)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(55 165) scale(0.4)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(14 185) scale(0.35)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(62 275) scale(0.35)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(232 58) scale(0.4)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(305 103) scale(0.35)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(334 190) scale(0.4)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(292 205) scale(0.35)"/>
-          <use href="#ceu-sp" class="ceu-brilho ceu-brilho-branco" transform="translate(328 268) scale(0.35)"/>
-          <use href="#ceu-sp" class="ceu-brilho" transform="translate(18 80) scale(0.35)"/>
-          <circle class="ceu-ponto" cx="45" cy="95" r="1.6"/><circle class="ceu-ponto" cx="322" cy="78" r="1.6"/><circle class="ceu-ponto" cx="22" cy="255" r="1.5"/><circle class="ceu-ponto" cx="312" cy="245" r="1.5"/><circle class="ceu-ponto" cx="250" cy="90" r="1.4"/>
-        </svg>
-        <img class="boneco-dia" src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
-        <img class="boneco-noite" src="imagens/desenho-rafael-noite.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" loading="lazy">
+        <img class="boneco-dia" src="imagens/desenho-rafael.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" data-i18n-alt="bonecoAlt" loading="lazy">
+        <img class="boneco-noite" src="imagens/desenho-rafael-noite.webp" alt="Ilustração de Rafael Trajano, Full-Stack Developer" data-i18n-alt="bonecoAlt" loading="lazy">
       </div>
     </div>
     <div class="sobre-conteudo animar">
-      <span class="sobre-label">Sobre</span>
-      <h2>Minha Jornada</h2>
+      <span class="sobre-label" data-i18n="navSobre">Sobre</span>
+      <h2 data-i18n="sobreTitulo">Minha Jornada</h2>
       <div class="texto-sobre">
-        <p>
+        <p data-i18n="sobre1">
           Olá, me chamo Rafael Trajano, sou graduando em <strong>Ciência da Computação</strong> pela UEPB e estagiário de Engenharia de Software no <strong>NUTES</strong>.
           Também desenvolvi o <strong>Jornada</strong>, um sistema de estudos gamificado que é o meu TCC.
         </p>
-        <p>
+        <p data-i18n="sobre2">
           Além das habilidades técnicas, sou comunicativo, empático e paciente, qualidades que me ajudam a sempre procurar entender a perspectiva das outras pessoas.
         </p>
       </div>
@@ -254,10 +224,10 @@
 <!-- Tecnologias -->
     <section id="tecnologias" class="tecnologias">
         <div class="tecnologias-header animar">
-            <span class="tecnologias-label">Tecnologias</span>
-            <h2>Minha Stack</h2>
+            <span class="tecnologias-label" data-i18n="navTec">Tecnologias</span>
+            <h2 data-i18n="tecTitulo">Minha Stack</h2>
         </div>
-        <div class="tecnologias-carrossel animar" aria-label="Tecnologias que utilizo">
+        <div class="tecnologias-carrossel animar" aria-label="Tecnologias que utilizo" data-i18n-aria="tecAria">
           <div class="tecnologias-track" id="tecnologias-track">
             <div class="tecnologias-lista" id="tecnologias-lista">
                 <div class="tecnologias-card">
@@ -326,12 +296,12 @@
 <!-- Projetos -->
 <section id="projetos" class="projetos">
   <div class="projetos-header animar">
-    <span class="projetos-label">Projetos</span>
-    <h2>Meu Portfólio</h2>
+    <span class="projetos-label" data-i18n="navProjetos">Projetos</span>
+    <h2 data-i18n="projTitulo">Meu Portfólio</h2>
   </div>
 
   <div class="projetos-carrossel-wrapper">
-    <button class="projetos-seta seta-esquerda" id="projetos-prev" aria-label="Projeto anterior"></button>
+    <button class="projetos-seta seta-esquerda" id="projetos-prev" aria-label="Projeto anterior" data-i18n-aria="projAnterior"></button>
 
     <div class="projetos-carrossel">
       <div class="projetos-lista" id="projetos-lista">
@@ -339,79 +309,79 @@
         <!-- Projeto 1 — Jornada (TCC) -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
-            <img src="imagens/imagem-jornada.webp" alt="Jornada — Sistema de estudos gamificado" loading="lazy">
+            <img src="imagens/imagem-jornada.webp" alt="Jornada — Sistema de estudos gamificado" data-i18n-alt="jornadaAlt" loading="lazy">
             <span class="projetos-tec-badge">React · FastAPI · PostgreSQL</span>
           </div>
           <div class="projetos-conteudo">
-            <h3>Jornada — Sistema de Estudos (TCC)</h3>
-            <p>Sistema de estudos gamificado, com streak, troféus e grupos de estudo com ranking entre amigos.</p>
+            <h3 data-i18n="jornadaTitulo">Jornada — Sistema de Estudos (TCC)</h3>
+            <p data-i18n="jornadaDesc">Sistema de estudos gamificado, com streak, troféus e grupos de estudo com ranking entre amigos.</p>
             <div class="projetos-btns">
-              <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i><span data-i18n="verGithub">Ver GitHub</span></a>
             </div>
           </div>
-          <a href="https://jornadaestudos.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Jornada"></a>
+          <a href="https://jornadaestudos.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Jornada" data-i18n-aria="jornadaAria"></a>
         </article>
 
         <!-- Projeto 2 — VoltControl -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
-            <img src="imagens/imagem-voltcontrol.webp" alt="VoltControl — Dashboard de Monitoramento de Energia" loading="lazy">
+            <img src="imagens/imagem-voltcontrol.webp" alt="VoltControl — Dashboard de Monitoramento de Energia" data-i18n-alt="voltAlt" loading="lazy">
             <span class="projetos-tec-badge">React · Chart.js · LocalStorage</span>
           </div>
           <div class="projetos-conteudo">
-            <h3>VoltControl — Dashboard de Energia</h3>
-            <p>Dashboard para controle de energia elétrica, com gráfico comparativo, histórico e exportação em PDF.</p>
+            <h3 data-i18n="voltTitulo">VoltControl — Dashboard de Energia</h3>
+            <p data-i18n="voltDesc">Dashboard para controle de energia elétrica, com gráfico comparativo, histórico e exportação em PDF.</p>
             <div class="projetos-btns">
-              <a href="https://github.com/rafael-trajano/voltcontrol" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/voltcontrol" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i><span data-i18n="verGithub">Ver GitHub</span></a>
             </div>
           </div>
-          <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto VoltControl"></a>
+          <a href="https://voltcontrol.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto VoltControl" data-i18n-aria="voltAria"></a>
         </article>
 
         <!-- Projeto 3 — Forrobodó Junino -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
-            <img src="imagens/imagem-forrobodojunino.webp" alt="Site para Evento — Forrobodó Junino" loading="lazy">
+            <img src="imagens/imagem-forrobodojunino.webp" alt="Site para Evento — Forrobodó Junino" data-i18n-alt="juninoAlt" loading="lazy">
             <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
           </div>
           <div class="projetos-conteudo">
-            <h3>Site para Evento — Forrobodó Junino</h3>
-            <p>Site para divulgar evento, com programação, galeria de fotos e integração com Google Maps.</p>
+            <h3 data-i18n="juninoTitulo">Site para Evento — Forrobodó Junino</h3>
+            <p data-i18n="juninoDesc">Site para divulgar evento, com programação, galeria de fotos e integração com Google Maps.</p>
             <div class="projetos-btns">
-              <a href="https://github.com/rafael-trajano/forrobodo-junino" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/forrobodo-junino" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i><span data-i18n="verGithub">Ver GitHub</span></a>
             </div>
           </div>
-          <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Forrobodó Junino"></a>
+          <a href="https://forrobodojunino.com.br" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Forrobodó Junino" data-i18n-aria="juninoAria"></a>
         </article>
 
         <!-- Projeto 4 — Cachaça Forrobodó -->
         <article class="projetos-card animar">
           <div class="projetos-img-wrap">
-            <img src="imagens/imagem-forrobodo.webp" alt="Site Institucional — Cachaça Forrobodó" loading="lazy">
+            <img src="imagens/imagem-forrobodo.webp" alt="Site Institucional — Cachaça Forrobodó" data-i18n-alt="cachacaAlt" loading="lazy">
             <span class="projetos-tec-badge">HTML · CSS · JavaScript</span>
           </div>
           <div class="projetos-conteudo">
-            <h3>Site Institucional — Cachaça Forrobodó</h3>
-            <p>Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
+            <h3 data-i18n="cachacaTitulo">Site Institucional — Cachaça Forrobodó</h3>
+            <p data-i18n="cachacaDesc">Site institucional com história da marca, catálogo de produtos, informações para visitação e canais de contato.</p>
             <div class="projetos-btns">
-              <a href="https://github.com/rafael-trajano/forrobodo" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i>Ver GitHub</a>
+              <a href="https://github.com/rafael-trajano/forrobodo" target="_blank" rel="noopener noreferrer" class="projetos-link-codigo"><i class="icone icone-github" aria-hidden="true"></i><span data-i18n="verGithub">Ver GitHub</span></a>
             </div>
           </div>
-          <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Forrobodó"></a>
+          <a href="https://cachacaforrobodo.netlify.app" target="_blank" rel="noopener noreferrer" class="projetos-card-link" aria-label="Ver site do projeto Cachaça Forrobodó" data-i18n-aria="cachacaAria"></a>
         </article>
 
       </div>
     </div>
 
-    <button class="projetos-seta seta-direita" id="projetos-next" aria-label="Próximo projeto"></button>
+    <button class="projetos-seta seta-direita" id="projetos-next" aria-label="Próximo projeto" data-i18n-aria="projProximo"></button>
   </div>
 </section>
 
 <!-- Contato -->
     <section id="contato" class="contato">
         <div class="contato-header animar">
-            <span class="contato-label">Contato</span>
-            <h2>Vamos Conversar?</h2>
+            <span class="contato-label" data-i18n="navContato">Contato</span>
+            <h2 data-i18n="contatoTitulo">Vamos Conversar?</h2>
         </div>
         <div class="contato-lista">
             <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" class="contato-card animar" aria-label="WhatsApp">
@@ -436,12 +406,12 @@
 </main>
 
 <footer class="footer">
-    <a href="#home" class="footer-logo">
+    <a href="#home" class="footer-logo" aria-label="Rafael Trajano, voltar ao início" data-i18n-aria="logo">
         <svg class="logo-astro logo-astro-sol" aria-hidden="true"><use href="#logo-sol"/></svg><svg class="logo-astro logo-astro-lua" aria-hidden="true"><use href="#logo-lua"/></svg><span class="sr-only">Rafael Trajano</span>
     </a>
     <div class="footer-info">
-        <p class="footer-copyright">© 2026 Rafael Trajano — Todos os direitos reservados</p>
-        <p class="footer-linha">E-mail: <a href="mailto:rafatrajaninhortn@gmail.com">rafatrajaninhortn@gmail.com</a></p>
+        <p class="footer-copyright" data-i18n="copyright">© 2026 Rafael Trajano — Todos os direitos reservados</p>
+        <p class="footer-linha"><span data-i18n="emailRotulo">E-mail:</span> <a href="mailto:rafatrajaninhortn@gmail.com">rafatrajaninhortn@gmail.com</a></p>
     </div>
     <div class="footer-social">
         <a href="https://wa.me/5583986703374" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="icone icone-whatsapp" aria-hidden="true"></i>

@@ -475,13 +475,13 @@ main {
   letter-spacing: -0.01em;
 }
 
-/* Botão de tema (sol/lua) */
+/* Seletor de idioma (PT/EN) — o tema segue o sistema */
 
 .menu {
     gap: 14px;
 }
 
-.tema-toggle {
+.idioma-toggle {
     position: relative;
     width: 84px;
     height: 40px;
@@ -494,15 +494,19 @@ main {
     grid-template-columns: 1fr 1fr;
     place-items: center;
     overflow: hidden;
+    font-family: var(--fonte-titulo);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     transition: var(--transition);
 }
 
-.tema-toggle:hover {
+.idioma-toggle:hover {
     transform: translateY(-2px);
 }
 
-/* fundo do lado ativo: preenche a metade inteira */
-.tema-bolinha {
+/* fundo do idioma ativo: preenche a metade inteira */
+.idioma-bolinha {
     position: absolute;
     top: 0;
     left: 0;
@@ -512,27 +516,27 @@ main {
     transition: transform var(--transition);
 }
 
-[data-tema="escuro"] .tema-bolinha {
+[data-idioma="en"] .idioma-bolinha {
     transform: translateX(100%);
 }
 
-.tema-icone {
+.idioma-opcao {
     position: relative;
     z-index: 1;
-    width: 22px;
-    height: 22px;
-    overflow: visible;
-    transition: opacity var(--transition), transform var(--transition);
+    color: var(--cor-preto);
+    opacity: 0.65;
+    transition: opacity var(--transition), color var(--transition);
 }
 
-.tema-icone-sol { opacity: 1; }
-.tema-icone-lua { opacity: 0.55; transform: scale(0.9); }
-[data-tema="escuro"] .tema-icone-sol { opacity: 0.55; transform: scale(0.9); }
-[data-tema="escuro"] .tema-icone-lua { opacity: 1; transform: none; }
+[data-idioma="pt"] .idioma-pt,
+[data-idioma="en"] .idioma-en {
+    color: var(--cor-primaria);
+    opacity: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
-    .tema-bolinha,
-    .tema-icone {
+    .idioma-bolinha,
+    .idioma-opcao {
         transition: none;
     }
 }
@@ -1394,21 +1398,17 @@ main {
 
 
 
-    /* Botão de tema */
+    /* Seletor de idioma */
 
     .menu {
         gap: 8px;
     }
 
-    .tema-toggle {
+    .idioma-toggle {
         width: 72px;
         height: 36px;
         border-radius: 10px;
-    }
-
-    .tema-icone {
-        width: 19px;
-        height: 19px;
+        font-size: 0.95rem;
     }
 
     /* Contato */
@@ -1473,27 +1473,6 @@ main {
     }
 }
 
-/* Sobre: boneco sobre o céu */
-.sobre-boneco {
-    position: relative;
-    display: flex;
-    background: radial-gradient(circle at 50% 45%, var(--ceu-1) 0%, var(--ceu-2) 100%);
-    overflow: hidden;
-}
-
-.sobre-boneco-ceu {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.sobre-boneco img {
-    position: relative;
-    z-index: 1;
-    filter: drop-shadow(0 14px 24px rgba(30, 10, 70, 0.35));
-}
-
 /* Celular: como no Jornada — texto, ilustração e depois os botões */
 @media (max-width: 768px) {
     .home {
@@ -1536,10 +1515,6 @@ main {
 .boneco-noite { display: none; }
 [data-tema="escuro"] .boneco-dia { display: none; }
 [data-tema="escuro"] .boneco-noite { display: block; }
-
-.sobre-boneco img {
-    width: 86%;
-}
 
 /* Logo: sol no tema claro, lua no tema escuro */
 .logo-link,
@@ -1592,79 +1567,12 @@ main {
     }
 }
 
-/* Celular: seletor de tema compacto (um ícone só, mostra o tema para o qual vai mudar) */
-@media (max-width: 768px) {
-    .tema-toggle {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--cor-caixa);
-    }
-
-    .tema-bolinha {
-        display: none;
-    }
-
-    .tema-icone,
-    [data-tema="escuro"] .tema-icone-sol,
-    [data-tema="escuro"] .tema-icone-lua {
-        width: 22px;
-        height: 22px;
-        opacity: 1;
-        transform: none;
-    }
-
-    [data-tema="claro"] .tema-icone-sol,
-    [data-tema="escuro"] .tema-icone-lua {
-        display: none;
-    }
-}
-
-/* Sobre: boneco sobre uma elipse de céu, como nas seções do Jornada e na ilustração do início */
-.sobre-imagem.sobre-boneco {
-    background: none;
-    box-shadow: none;
-    overflow: visible;
-    padding: 0;
-}
-
-.sobre-boneco-ceu {
-    inset: auto;
-    left: 2%;
-    top: 14%;
-    width: 112%;
-    height: 82%;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at 50% 45%, var(--ceu-1) 0%, var(--ceu-2) 100%);
-}
-
-.sobre-boneco img {
-    width: 100%;
-}
-
 /* Menu lateral com o céu de cada tema */
 .nav {
     background: radial-gradient(ellipse at 50% 30%, var(--ceu-1) 0%, var(--ceu-2) 100%);
 }
 
 @media (max-width: 768px) {
-    /* seletor de tema: fundo neutro, sem parecer "ativado" */
-    .tema-toggle {
-        background-color: #EFEEF2;
-        border-color: #E2E0E8;
-    }
-
-    [data-tema="escuro"] .tema-toggle {
-        background-color: #1A2430;
-        border-color: #263241;
-    }
-
-    /* elipse do Sobre centralizada, com o boneco centralizado nela */
-
-
     /* cards de projeto sem o movimento de subir */
     .projetos-card.animar:hover {
         transform: none;
@@ -1682,44 +1590,10 @@ main {
     }
 }
 
-/* Sobre: elipse larga (como antes), com o boneco centralizado nela */
-.sobre-boneco-ceu {
-    left: 2%;
-    top: 14%;
-    width: 112%;
-    height: 82%;
-}
-
-/* boneco no centro da elipse (centro da elipse: 58% x 55% do quadro) */
-.sobre-boneco img {
-    width: 90%;
-    margin: 0 auto;
-    transform: translate(8.9%, 6.2%);
-}
-
 /* Sem o brilho em volta das ilustrações (início e Sobre) */
 .home-imagem-glow,
 .sobre-imagem-glow {
     display: none;
-}
-
-/* Sobre: mesmo tamanho de elipse de antes no computador */
-@media (min-width: 769px) {
-    .sobre-imagem.sobre-boneco {
-        max-width: 350px;
-    }
-}
-
-/* Celular: elipse no centro da tela e boneco centralizado dentro dela */
-@media (max-width: 768px) {
-    .sobre-boneco-ceu {
-        left: -6%;
-    }
-
-    .sobre-boneco img {
-        width: 92%;
-        transform: translateY(6%);
-    }
 }
 
 /* Menu e overlay fechados ficam realmente ocultos:
@@ -1734,4 +1608,29 @@ main {
 .nav.ativo,
 .menu-overlay.ativo {
     visibility: visible;
+}
+
+/* Sobre: boneco sem fundo, maior */
+.sobre-imagem.sobre-boneco {
+    max-width: 340px;
+    aspect-ratio: auto;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.sobre-boneco img {
+    width: 100%;
+    filter: drop-shadow(0 16px 28px rgba(30, 10, 70, 0.25));
+}
+
+[data-tema="escuro"] .sobre-boneco img {
+    filter: none;
+}
+
+@media (max-width: 768px) {
+    .sobre-imagem.sobre-boneco {
+        max-width: 260px;
+    }
 }
